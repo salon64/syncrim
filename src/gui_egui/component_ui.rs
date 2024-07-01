@@ -8,7 +8,7 @@ use egui::{
     containers, Color32, ComboBox, Context, DragValue, Frame, Key, KeyboardShortcut, Margin,
     Modifiers, PointerButton, Pos2, Rect, Response, Rounding, Shape, Stroke, Ui, Vec2, Window,
 };
-use epaint::{CircleShape, Shadow};
+use epaint::CircleShape;
 
 use super::helper;
 

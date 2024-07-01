@@ -10,7 +10,6 @@ use egui::{
     Color32, DragValue, Frame, Key, KeyboardShortcut, Margin, Modifiers, PointerButton, Pos2, Rect,
     Response, Rounding, Shape, Stroke, Ui, Vec2, Window,
 };
-use epaint::Shadow;
 
 #[typetag::serde]
 impl EguiComponent for Wire {
@@ -153,7 +152,7 @@ impl EguiComponent for Wire {
                     inner_margin: Margin::same(10f32),
                     outer_margin: Margin::same(0f32),
                     rounding: Rounding::same(10f32),
-                    shadow: helper::shadow_small_dark(),
+                    shadow: shadow_small_dark(),
                     fill: ui.visuals().panel_fill,
                     stroke: ui.visuals().window_stroke,
                 })
