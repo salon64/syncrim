@@ -5,7 +5,7 @@ use crate::gui_egui::component_ui::{
 };
 use crate::gui_egui::editor::{EditorMode, EditorRenderReturn, GridOptions, SnapPriority};
 use crate::gui_egui::gui::EguiExtra;
-use crate::gui_egui::helper::offset_helper;
+use crate::gui_egui::helper::{offset_helper, shadow_small_dark};
 use egui::{
     Color32, DragValue, Frame, Key, KeyboardShortcut, Margin, Modifiers, PointerButton, Pos2, Rect,
     Response, Rounding, Shape, Stroke, Ui, Vec2, Window,
@@ -153,7 +153,7 @@ impl EguiComponent for Wire {
                     inner_margin: Margin::same(10f32),
                     outer_margin: Margin::same(0f32),
                     rounding: Rounding::same(10f32),
-                    shadow: Shadow::small_dark(),
+                    shadow: helper::shadow_small_dark(),
                     fill: ui.visuals().panel_fill,
                     stroke: ui.visuals().window_stroke,
                 })

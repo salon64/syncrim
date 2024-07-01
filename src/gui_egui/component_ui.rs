@@ -10,6 +10,8 @@ use egui::{
 };
 use epaint::{CircleShape, Shadow};
 
+use super::helper;
+
 pub fn rect_with_hover<P>(
     rect: Rect,
     clip_rect: Rect,
@@ -48,7 +50,7 @@ pub fn properties_window<P>(
                 inner_margin: Margin::same(10f32),
                 outer_margin: Margin::same(0f32),
                 rounding: Rounding::same(10f32),
-                shadow: Shadow::small_dark(),
+                shadow: helper::shadow_small_dark(),
                 fill: ui.visuals().panel_fill,
                 stroke: ui.visuals().window_stroke,
             })
