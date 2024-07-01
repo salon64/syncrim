@@ -25,7 +25,7 @@ impl EguiComponent for ProbeEdit {
         offset.x += self.pos.0 * scale;
         offset.y += self.pos.1 * scale;
         let interact = matches!(editor_mode, EditorMode::Simulator);
-        let area = Area::new(self.id.to_string())
+        let area = Area::new(egui::Id::from(self.id.to_string()))
             .order(Order::Middle)
             .current_pos(offset.to_pos2())
             .movable(false)

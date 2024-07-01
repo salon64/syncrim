@@ -29,7 +29,7 @@ impl EguiComponent for Probe {
             Some(s) => s.get_input_value(&input),
             None => SignalValue::Uninitialized,
         };
-        let area = Area::new(self.id.to_string())
+        let area = Area::new(egui::Id::from(self.id.to_string()))
             .order(Order::Middle)
             .current_pos(offset.to_pos2())
             .movable(false)
