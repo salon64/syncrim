@@ -13,6 +13,7 @@ use egui::{
 };
 use std::collections::HashMap;
 use std::path::PathBuf;
+use std::time::Instant;
 
 pub struct Gui {
     pub simulator: Option<Simulator>,
@@ -103,23 +104,14 @@ impl eframe::App for Gui {
             self.top_bar(ctx);
             if self.simulator.is_some() {
                 // self.side_panel(ctx);
-                self.draw_area(ctx, frame);
                 if self.simulator.as_ref().unwrap().running {
-                    self.simulator.as_mut().unwrap().clock();
+                    self.simulator.as_mut().unwrap().run();
+
+                    // This makes the ui run agin as to not stop the simulation
+                    // when no ui events are happening
                     ctx.request_repaint();
                 }
-            }
-        }
-    }
-    fn post_rendering(&mut self, _window_size_px: [u32; 2], _frame: &Frame) {
-        if !self.pause {
-            match &mut self.simulator {
-                Some(s) => {
-                    if s.running {
-                        s.run();
-                    }
-                }
-                None => {}
+                self.draw_area(ctx, frame);
             }
         }
     }
@@ -167,10 +159,6 @@ impl Gui {
                     keymap::view_zoom_out_fn(self);
                 }
             });
-        }
-        if self.simulator.as_ref().unwrap().running {
-            self.simulator.as_mut().unwrap().clock();
-            ctx.request_repaint();
         }
     }
 
