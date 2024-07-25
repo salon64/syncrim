@@ -55,7 +55,10 @@ impl EguiComponent for Probe {
                 }
                 .on_hover_text({
                     if let SignalValue::Data(v) = value {
-                        format!("{:#010x}\nAs unsigned: {}\nAs signed: {}", v, v, v as i32)
+                        format!(
+                            "from {}:{}\n{:#010x}\nAs unsigned: {}\nAs signed: {}",
+                            self.input.id, self.input.field, v, v, v as i32
+                        )
                     } else {
                         text
                     }
