@@ -7,6 +7,7 @@ use crate::gui_egui::component_ui::{
 use crate::gui_egui::editor::{EditorMode, EditorRenderReturn, GridOptions};
 use crate::gui_egui::gui::EguiExtra;
 use egui::{Align2, Area, DragValue, Order, Pos2, Rect, Response, TextStyle, Ui, Vec2};
+use log::{debug, trace};
 
 #[typetag::serde]
 impl EguiComponent for ProbeEdit {
@@ -177,6 +178,8 @@ fn parse_signal(text: &str) -> SignalValue {
     let text = text.trim();
 
     if let Ok(signal) = text.parse::<SignalSigned>() {
+        (signal as SignalUnsigned).into()
+    } else if let Ok(signal) = text.parse::<SignalUnsigned>() {
         (signal as SignalUnsigned).into()
     } else if let Some(hex) = text.strip_prefix("0x") {
         if let Ok(signal) = SignalUnsigned::from_str_radix(hex, 16) {
