@@ -1,5 +1,5 @@
 use crate::common::{EguiComponent, Ports, SignalUnsigned, Simulator};
-use crate::components::FullAdd;
+use crate::components::{alu_op, FullAdd};
 use crate::gui_egui::component_ui::{
     drag_logic, input_change_id, input_selector, pos_drag_value, properties_window,
     rect_with_hover, visualize_ports,
@@ -58,21 +58,20 @@ impl EguiComponent for FullAdd {
         };
         let op: String = if let Some(s) = simulator {
             match TryInto::<u32>::try_into(s.get_input_value(&self.op_in)).unwrap() {
-                0 => "ADD",
-                1 => "ADDU",
-                2 => "SUB",
-                3 => "SUBU",
-                4 => "AND",
-                5 => "OR",
-                6 => "XOR",
-                7 => "NOR",
-                8 => "DONOTHING",
-                10 => "SLT",
-                11 => "SLTU",
-                12 => "SLL",
-                13 => "SRL",
-                14 => "SRA",
-                15 => "LUI",
+                alu_op::ADD => "ADD",
+                alu_op::ADDU => "ADDU",
+                alu_op::SUB => "SUB",
+                alu_op::SUBU => "SUBU",
+                alu_op::AND => "AND",
+                alu_op::OR => "OR",
+                alu_op::XOR => "XOR",
+                alu_op::NOR => "NOR",
+                alu_op::SLT => "SLT",
+                alu_op::SLTU => "SLTU",
+                alu_op::SLL => "SLL",
+                alu_op::SRL => "SRL",
+                alu_op::SRA => "SRA",
+                alu_op::LUI => "LUI",
                 _ => "UNDEF",
             }
             .to_string()
